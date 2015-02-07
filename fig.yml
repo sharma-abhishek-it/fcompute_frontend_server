@@ -2,14 +2,20 @@ web:
   build: .
   links:
     - redis
+    - postgres
   volumes:
     - .:/webapp
   environment:
-    - REDIS=redis
+    - DB_HOST=postgres
+    - REDIS_HOST=redis
     - RAILS_ENV=development
+    - DB_USERNAME=postgres
   working_dir: /webapp
   ports:
     - "3000:3000"
 
 redis:
   image: redis:2.8.19
+
+postgres:
+  image: postgres:9.4.1
