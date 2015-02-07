@@ -1,3 +1,8 @@
+require 'pathname'
+require 'csv'
+require 'date'
+require 'fileutils'
+
 module FDataUtilsHelper
 
   def self.fill_blank_fdata(f_data)
@@ -21,5 +26,31 @@ module FDataUtilsHelper
     end
 
     data = data.flatten
+  end
+
+  module FDataFileReader
+    def self.read_data_from_directory(source)
+      financial_data = {}
+
+      Dir[source + "*/*.csv"].each do |f|
+        pn = Pathname.new(f)
+        sector = pn.dirname.split.last.to_s
+
+        product = pn.basename.split.last.to_s
+        product.slice! pn.basename.split.last.extname.to_s
+
+        data = CSV.read(f).reverse
+        data.pop
+        data = data.map { |date,value| [date, value.to_f] }
+        unless data.empty?
+          financial_data[sector] = {} if financial_data[sector].nil?
+          financial_data[sector][product] = data
+        end
+      end
+
+      FileUtils.rm_rf(source)
+
+      return financial_data
+    end
   end
 end
