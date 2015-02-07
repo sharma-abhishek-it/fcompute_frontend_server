@@ -1,0 +1,14 @@
+web:
+  build: .
+  links:
+    - redis
+  volumes:
+    - .:/webapp
+  environment:
+    - REDIS=redis
+  working_dir: /webapp
+  ports:
+    - "3000:3000"
+
+redis:
+  image: redis:2.8.19
