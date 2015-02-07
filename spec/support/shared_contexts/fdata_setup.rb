@@ -1,9 +1,4 @@
-require 'csv'
-require 'tmpdir'
-require 'fileutils'
-
-module TestHelpers
-
+RSpec.shared_context "fdata_setup" do
   def test_dir
     Dir.tmpdir + "/harness/"
   end
@@ -26,7 +21,6 @@ module TestHelpers
   end
 
   def destroy_fdata_files
-    # test_dir = Dir.tmpdir + "/harness/"
     FileUtils.rm_rf(test_dir)
   end
 

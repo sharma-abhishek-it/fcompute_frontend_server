@@ -60,6 +60,8 @@ RSpec.describe FDataUtilsHelper, type: :helper do
     end
   end
   describe "data utilities -> data from file reading" do
+    include_context "fdata_setup"
+    
     before :each do
       create_fdata_files
     end
