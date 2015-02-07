@@ -6,6 +6,7 @@ web:
     - .:/webapp
   environment:
     - REDIS=redis
+    - RAILS_ENV=development
   working_dir: /webapp
   ports:
     - "3000:3000"
