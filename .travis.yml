@@ -2,9 +2,6 @@ sudo: false
 
 language: ruby
 
-addons:
-  postgresql: "9.3.5"
-
 rvm:
   - 2.2.0
 
@@ -15,6 +12,10 @@ env:
   - REDIS_HOST=localhost REDIS_PORT=6379 REDIS_DB=1 REDIS_SQ_DB=6 RAILS_ENV=test DB_USERNAME=postgres
 
 before_install:
+  - apt-get update
+  - apt-get purge postgresql-9.1 postgresql-9.2 postgresql-9.3
+  - apt-get install postgresql-client-common postgresql-9.4
+  - sudo service postgresql start
   - bundle install
   - bundle exec rake db:setup
 
