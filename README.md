@@ -9,6 +9,7 @@ This repository contains code for frontend handling of fcompute. It is based out
 
 -----------------
 Setup steps:
+
 1. Install and run Docker (boot2docker on osx)
 2. In this dir run `fig build web`
 3. To run test cases `fig run web bundle exec rspec`
