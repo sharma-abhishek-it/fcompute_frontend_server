@@ -1,0 +1,30 @@
+sudo: false
+
+language: ruby
+
+addons:
+  postgresql: "9.3.5"
+
+rvm:
+  - 2.2.0
+
+services:
+  - redis-server
+
+env:
+  - REDIS_HOST=localhost
+  - REDIS_PORT=6379
+  - REDIS_DB=1
+  - REDIS_SQ_DB=6
+  - RAILS_ENV=test
+  - DB_USERNAME=postgres
+
+before_install:
+  - bundle install
+  - bundle exec rake db:setup
+
+script:
+  - bundle exec rspec
+
+notifications:
+  email: false

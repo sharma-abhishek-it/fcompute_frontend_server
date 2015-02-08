@@ -51,4 +51,7 @@ group :development, :test do
   # Rspec makes testing easier
   gem 'rspec-rails', '~> 3.0'
 
+  # Coveralls for code coverage
+  gem 'coveralls', require: false
+
 end
