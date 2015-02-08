@@ -10,9 +10,10 @@ This repository contains code for frontend handling of fcompute. It is based out
 -----------------
 Setup steps:
 
-1. Install and run Docker (boot2docker on osx)
-2. In this dir run `fig build web`
-3. To run test cases `fig run web bundle exec rspec`
+1. Install and run [Docker](https://docs.docker.com/) (boot2docker on osx)
+2. Install [fig](http://www.fig.sh/)
+3. In this dir run `fig build web`
+4. To run test cases `fig run web bundle exec rspec`
 
 Main logic of code is as follows:
 - A scheduler looks for files in directory and uploads sectors and products to postgresql and redis respectively
