@@ -61,7 +61,7 @@ RSpec.describe FDataUtilsHelper, type: :helper do
   end
   describe "data utilities -> data from file reading" do
     include_context "fdata_setup"
-    
+
     before :each do
       create_fdata_files
     end
@@ -71,7 +71,7 @@ RSpec.describe FDataUtilsHelper, type: :helper do
 
     it "correctly reads all sectors" do
       expected_sectors = ['Sector1', 'Sector2']
-      out = FDataUtilsHelper::FDataFileReader.read_data_from_directory(Dir.tmpdir + "/harness/").keys
+      out = FDataUtilsHelper::FDataFileReader.read_data_from_directory(Dir.tmpdir + "/harness/").keys.sort
 
       expect(out).to eql(expected_sectors)
     end
