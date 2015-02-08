@@ -7,6 +7,6 @@ RUN mkdir /gems
 ADD Gemfile /gems/
 ADD Gemfile.lock /gems/
 
-RUN cd /gems && bundle install
+RUN cd /gems && bundle install --jobs=8
 
 RUN rm -rf /gems
