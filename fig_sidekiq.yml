@@ -1,0 +1,26 @@
+sidekiq:
+  build: ./fcompute_frontend_server
+  links:
+    - redis
+    - postgres
+  volumes:
+    - ./fcompute_frontend_server:/webapp
+  environment:
+    - DB_HOST=postgres
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
+    - REDIS_DB=1
+    - REDIS_SQ_DB=6
+    - RAILS_ENV=development
+    - DB_USERNAME=postgres
+    - FDATA_DIR=/webapp/tmp/Data/
+  working_dir: /webapp
+  command: bundle exec sidekiq
+
+redis:
+  image: redis:2.8.19
+  ports:
+    - 6379:6379
+
+postgres:
+  image: postgres:9.4.1

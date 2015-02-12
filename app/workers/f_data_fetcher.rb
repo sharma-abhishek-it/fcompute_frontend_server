@@ -2,7 +2,7 @@ class FDataFetcher
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence { hourly }
+  recurrence { minutely }
 
   def perform
     data = FDataUtilsHelper::FDataFileReader.read_data_from_directory(ENV['FDATA_DIR'])
